@@ -1,0 +1,82 @@
+<template name="btsAllResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>БТС-{{btsNo}} Нәтижелері</h4>
+            <div class="form-inline">
+                    {{> academicYear}}                 
+                    <label for="">Сынып</label>
+                    <select class="form-control" name='grade' id='select'>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="">Мектеп</label>
+                    <select class="form-control" name='schoolId_select' id='select' style="width:150pt">
+                        <option value="">Select school</option>
+                    {{#each schools}}
+                        <option value="{{schoolId}}">{{shortName}}</option>
+                    {{/each}}
+                    </select>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Мектеп</th>
+                        <th>Сынып</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>Физика</th>
+                        <th>Химия</th>
+                        <th>Биология</th>
+                        <th>Ағылшын тілі</th>
+                        <th>Қазақ тілі</th>
+                        <th>Қазақ әдебиеті</th>
+                        <th>Орыс тілі</th>
+                        <th>Алгебра</th>
+                        <th>Геометрия</th>
+                        <th>Информатика</th>
+                        <th>Түрік тілі</th>
+                        <th>Жалпы тарих</th>
+                        <th>Тарих</th>
+                        <th>География</th>
+                        <th>Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{schoolName schoolId}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{name}}</td>
+                        <td>{{surname}}</td>
+                        <td>{{physics}}</td>
+                        <td>{{chemistry}}</td>
+                        <td>{{biology}}</td>
+                        <td>{{english}}</td>
+                        <td>{{kazakh}}</td>
+                        <td>{{kazakh_literature}}</td>
+                        <td>{{russian}}</td>
+                        <td>{{algebra}}</td>
+                        <td>{{geometry}}</td>
+                        <td>{{computer}}</td>
+                        <td>{{turkish}}</td>
+                        <td>{{world_history}}</td>
+                        <td>{{kazakh_history}}</td>
+                        <td>{{geography}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

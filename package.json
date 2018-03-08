@@ -1,0 +1,15 @@
+{
+  "name": "tests",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "bootstrap-table": "^1.11.2",
+    "core-js": "^2.5.1",
+    "meteor-node-stubs": "^0.2.11",
+    "xlsx": "^0.11.18"
+  }
+}

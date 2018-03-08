@@ -1,0 +1,76 @@
+<template name="btsStudentResults">
+        {{#if Template.subscriptionsReady}}
+            {{#each results}}
+        <div class="col-md-6">
+            <div>
+            <label style="padding-right: 70pt">Аты:</label><label>{{name}}</label>
+            </div>
+            <div>
+            <label style="padding-right: 63pt">Жөні:</label><label>{{surname}}</label>
+            </div>
+            <div>
+            <label style="padding-right: 52pt">Сынып:</label><label>{{grade}}{{division}}</label>
+            </div>
+            <div>
+            <label style="padding-right: 78pt">ID:</label><label>{{studentId}}</label>
+            </div>
+            <div>
+            <label style="padding-right: 15pt">Вариант 1 күн:</label><label>{{variant_day_1}}</label>
+            </div>
+            <div>
+            <label style="padding-right: 15pt">Вариант 2 күн:</label><label>{{variant_day_2}}</label>
+            </div>
+        </div>
+            {{/each}}
+
+            <div class="col-md-12">
+                <h5 style="float: center;">{{> academicYear}}</h5>
+                <h4 class="col-md-12" style="text-align: center;">БТС-{{btsNo}}</h4>      
+            </div>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>Физика</th>
+                        <th>Химия</th>
+                        <th>Биология</th>
+                        <th>Ағылшын тілі</th>
+                        <th>Қазақ тілі</th>
+                        <th>Қазақ әдебиеті</th>
+                        <th>Орыс тілі</th>
+                        <th>Алгебра</th>
+                        <th>Геометрия</th>
+                        <th>Информатика</th>
+                        <th>Түрік тілі</th>
+                        <th>Жалпы тарих</th>
+                        <th>Тарих</th>
+                        <th>География</th>
+                        <th>Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{physics}}</td>
+                        <td>{{chemistry}}</td>
+                        <td>{{biology}}</td>
+                        <td>{{english}}</td>
+                        <td>{{kazakh}}</td>
+                        <td>{{kazakh_literature}}</td>
+                        <td>{{russian}}</td>
+                        <td>{{algebra}}</td>
+                        <td>{{geometry}}</td>
+                        <td>{{computer}}</td>
+                        <td>{{turkish}}</td>
+                        <td>{{world_history}}</td>
+                        <td>{{kazakh_history}}</td>
+                        <td>{{geography}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+</template>

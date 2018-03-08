@@ -1,0 +1,73 @@
+<template name="btsResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>БТС-{{btsNo}} Нәтиже</h4>
+            <div class="row">
+                    {{> academicYear}}
+                    <label for="">Сынып</label>
+                    <select class="grade">
+                        <option value="7">7 cынып</option>
+                        <option value="8">8 cынып</option>
+                        <option value="9">9 cынып</option>
+                        <option value="10">10 cынып</option>
+                    </select>
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Оқушы ID</th>
+                        <th>Сынып</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>Физика</th>
+                        <th>Химия</th>
+                        <th>Биология</th>
+                        <th>Ағылшын тілі</th>
+                        <th>Қазақ тілі</th>
+                        <th>Қазақ әдебиеті</th>
+                        <th>Орыс тілі</th>
+                        <th>Алгебра</th>
+                        <th>Геометрия</th>
+                        <th>Информатика</th>
+                        <th>Түрік тілі</th>
+                        <th>Жалпы тарих</th>
+                        <th>Тарих</th>
+                        <th>География</th>
+                        <th>Жалпы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{name}}</td>
+                        <td>{{surname}}</td>
+                        <td>{{physics}}</td>
+                        <td>{{chemistry}}</td>
+                        <td>{{biology}}</td>
+                        <td>{{english}}</td>
+                        <td>{{kazakh}}</td>
+                        <td>{{kazakh_literature}}</td>
+                        <td>{{russian}}</td>
+                        <td>{{algebra}}</td>
+                        <td>{{geometry}}</td>
+                        <td>{{computer}}</td>
+                        <td>{{turkish}}</td>
+                        <td>{{world_history}}</td>
+                        <td>{{kazakh_history}}</td>
+                        <td>{{geography}}</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+</template>

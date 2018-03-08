@@ -1,0 +1,45 @@
+<template name="kboStudentResults">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>КБО-{{kboNo}} Нәтиже</h4>
+            <div class="row">
+                    {{> academicYear}}
+            </div>
+            {{#if Template.subscriptionsReady}}
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bts-header">
+                        <th>#</th>
+                        <th>Оқушы ID</th>
+                        <th>Аты</th>
+                        <th>Жөні</th>
+                        <th>Сыныбы</th>
+                        <th>Пән</th>
+                        <th>Вариант</th>
+                        <th>Тобы</th>
+                        <th>Нәтиже</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each results}}
+                    <tr>
+                        <td>{{math @index "+" 1}}</td>
+                        <td>{{studentId}}</td>
+                        <td>{{studentName}}</td>
+                        <td>{{studentSurname}}</td>
+                        <td>{{grade}}{{division}}</td>
+                        <td>{{subjectName subjectId}}</td>
+                        <td>{{variant}}</td>
+                        <td>{{kazLanguageGroup}}</td>
+                        <td>{{divide result 2}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <p>Loading...</p>
+            {{/if}}
+        </div>
+    </div>
+
+</template>

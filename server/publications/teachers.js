@@ -59,3 +59,11 @@ Meteor.publish("teacherAssessments",function(academicYear) {
         return this.ready()
     }
 })
+
+Meteor.publish("ProfileImages", function() {
+    return ProfileImages.find();
+})
+
+Meteor.publish("UserImages", function() {
+    return UserImages.find();
+})

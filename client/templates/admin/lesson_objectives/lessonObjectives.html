@@ -1,17 +1,18 @@
 <template name="lessonObjectives">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="row">
-				<h4>Сабақ мақсаттары</h4>
-				<div class="form-inline">
-						<div class="form-group">
-						<label for="">Сынып</label>
+			<h4 style="text-align: center; padding-bottom: 10pt">Сабақ мақсаттары</h4>
+			<div class="form-inline">
+					<div class="form-group" style="margin-right: 10pt">
+						<label style="margin-right: 10pt">Сынып</label>
                 		    <select class="form-control" name="grade_select" id="select">
                 		        <option value="7">7 cынып</option>
                 		        <option value="8">8 cынып</option>
                 		        <option value="9">9 cынып</option>
                 		        <option value="10">10 cынып</option>
                 		    </select>
+                	</div>
+                	<div class="form-group" style="margin-right: 10pt">
                 		    <label for="">Пән:</label>
                 			<select class="form-control" name="subject_select" id="select">
                                 <option value="">Select subject</option>
@@ -19,13 +20,12 @@
                                     <option value="{{subjectId}}" >{{name_kz}}</option>
                                 {{/each}}
                             </select>
+                    </div>
+                    <div class="form-group" style="margin-right: 10pt">
                             <label for="objective">Іздеу:</label>
                             <input type="text" class="form-control" id="search" placeholder="Сабақ мақсаты" name="objective_search">
-						<a href="/admin/lessonObjectives/new" class="btn btn-primary">Қосу</a>
-						</div>
-					
-				</div>
-
+					</div>
+					<a href="/admin/lessonObjectives/new" class="btn btn-primary">Қосу</a>
 			</div>
 			<table class="table table-striped" style="margin-top:3%">
 				<thead>

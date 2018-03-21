@@ -1279,11 +1279,11 @@ Meteor.methods({
                             if (rating.scope == 'vice-principal') {
                                 sameRating.admin_participate++;
                                 sameRating.admin_participate_points += 0.5;
-                                sameRating.total_points += 0.5
+                                sameRating.total_points += 0.5;
                             } else if (rating.scope == 'principal') {
                                 sameRating.admin_participate++;
                                 sameRating.admin_participate_points += 1;
-                                sameRating.total_points += 1
+                                sameRating.total_points += 1;
                             }
 
                         } else {

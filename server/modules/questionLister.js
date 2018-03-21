@@ -1,5 +1,5 @@
 /*
-* возвращает ответы для теста в виде массива символов
+* parse a string of questions and returns as an array
 * */
 export const parseQuestions = (questions) => {
     let questionsArray = [];

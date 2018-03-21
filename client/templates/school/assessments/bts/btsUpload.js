@@ -6,10 +6,10 @@ Template.btsUpload.onCreated(function() {
     let template = this
     template.results = new ReactiveVar([])
     template.errors = new ReactiveVar(false)
-    template.btsNo = new ReactiveVar("3")
+    template.btsNo = new ReactiveVar("1")
     template.day = new ReactiveVar("1")
     template.subscribe("students")
-    template.subscribe("btsKeys",academicYear.get(),template.btsNo.get())
+    template.subscribe("btsSchoolKeys",academicYear.get())
 
 })
 
@@ -45,6 +45,9 @@ Template.btsUpload.events({
         template.day.set(event.target.value)
     },
     "change #file"(event,template) {
+        let btsNo = Template.instance().btsNo.get()
+        let day = Template.instance().day.get()
+
         function handleFiles(files) {
             // Check for the various File API support.
             if (window.FileReader) {
@@ -83,9 +86,9 @@ Template.btsUpload.events({
                     isValid: true
                 }
 
-                let variant = BtsAnswerKeys.findOne({variant: studObj.variant});
-                
-                if (!variant) {
+                let variant = BtsAnswerKeys.findOne({variant: studObj.variant, academicYear:academicYear.get()});
+
+                if (!variant || variant.day != day) {
                     studObj.isValid = false
                     template.errors.set(true)
                     alert("Келесі окушының варианты дұрыс емес \n" + studObj.studentId + " " + studObj.name + " " + studObj.surname)
@@ -102,7 +105,7 @@ Template.btsUpload.events({
                 res.push(studObj);
                 }
             }
-            console.log(res)
+            //console.log(res)
             template.results.set(res)
         }
 

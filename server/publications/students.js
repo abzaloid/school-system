@@ -71,10 +71,3 @@ Meteor.publish('btsStudentObjectivesResults',function(academicYear,quarter) {
     return this.ready()
 })
 
-Meteor.publish("ProfileImages", function() {
-    return ProfileImages.find();
-})
-
-Meteor.publish("UserImages", function() {
-    return UserImages.find();
-})

@@ -6,27 +6,6 @@
     padding-top: 3em;
 }
 
-/* design for using border */
-p.normal {
-    border: 10px solid black;
-}
-
-p.round1 {
-    border: 2px solid black;
-    border-radius: 5px;
-}
-
-p.round2 {
-    border: 2px solid black;
-    border-radius: 8px;
-}
-
-p.round3 {
-    border: 2px solid black;
-    border-radius: 12px;
-}
-
-
 /* old dropdown style */
 
 .dropdown-menu > kopie > a {

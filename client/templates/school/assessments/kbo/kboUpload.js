@@ -6,10 +6,10 @@ Template.kboUpload.onCreated(function() {
     let template = this
     template.results = new ReactiveVar([])
     template.errors = new ReactiveVar(false)
-    template.kboNo = new ReactiveVar("3")
+    template.kboNo = new ReactiveVar("1")
     template.subscribe("kboSubjects")
     template.subscribe("students")
-    template.subscribe("kboKeys",academicYear.get(),template.kboNo.get())
+    template.subscribe("kboSchoolKeys",academicYear.get())
 })
 
 Template.kboUpload.helpers({
@@ -41,6 +41,8 @@ Template.kboUpload.events({
         template.kboNo.set(event.target.value)
     },
     "change #file"(event,template) {
+        let kboNo = Template.instance().kboNo.get()
+
         function handleFiles(files) {
             // Check for the various File API support.
             if (window.FileReader) {
@@ -79,7 +81,7 @@ Template.kboUpload.events({
                     isValid: true
                 }
 
-                let variant = KboKeys.findOne({variant: studObj.variant});
+                let variant = KboKeys.findOne({variant: studObj.variant, academicYear:academicYear.get(), kboNo:kboNo});
                 if (!variant) {
                     studObj.isValid = false
                     template.errors.set(true)

@@ -70,6 +70,20 @@ Template.schoolRating.events({
     'change #attendScope'(event,template) {
         event.preventDefault()
         template.attendScope.set(event.target.value)
+    },
+    'click #deleteEvent' (event,template) {
+        event.preventDefault();
+
+        if (confirm("Өшіргіңіз келеді ме?")) {
+            Meteor.call("deleteEvent", this._id, function(err) {
+                if (err) {
+                    alert(err.reason);
+                }
+                else {
+                    alert("Өшірілді")
+                }
+            })
+        }
     }
 
 })

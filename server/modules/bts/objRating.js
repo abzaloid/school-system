@@ -25,9 +25,9 @@ export const calculateObjRating = (academicYear,btsNo,grade,schoolId) => {
 
             console.log(ratingObj.success)
             console.log(records.length)
-            ratingObj.success = parseFloat((ratingObj.success / records.length).toFixed(2))
+            ratingObj.success = parseFloat(((ratingObj.success) / records.length).toFixed(2))
 
-                // insert rating to db
+            // insert rating to db
             var sameRating = BtsObjectivesRatings.findOne({
                 objectiveId:ratingObj.objectiveId,
                 quarter: btsNo,

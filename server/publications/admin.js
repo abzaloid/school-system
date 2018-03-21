@@ -7,6 +7,13 @@ Meteor.publish('btsKeys', function(academicYear, quarter){
 	return this.ready()
 })
 
+Meteor.publish('btsSchoolKeys', function(academicYear){
+	if (this.userId) {
+		return BtsAnswerKeys.find({academicYear:academicYear})	
+	} 
+	return this.ready()
+})
+
 Meteor.publish("btsKey", function(keyId) {
 	if (this.userId) {
 		return BtsAnswerKeys.find({_id:keyId})
@@ -59,6 +66,13 @@ Meteor.publish("tatKey",function (id) {
 Meteor.publish('kboKeys', function(academicYear,kboNo){
 	if (this.userId) {
 		return KboKeys.find({academicYear:academicYear,kboNo:kboNo})	
+	} 
+	return this.ready()
+})
+
+Meteor.publish('kboSchoolKeys', function(academicYear){
+	if (this.userId) {
+		return KboKeys.find({academicYear:academicYear})	
 	} 
 	return this.ready()
 })

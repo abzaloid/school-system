@@ -271,9 +271,6 @@ export const calculateObj = (academicYear,btsNo,grade) => {
 
                         objResult.success = 0
 
-                        //console.log('student\'s keys= ',algebraKeys)
-                        //console.log('answer keys= ',answerKey.algebra)
-
                         _.each(questions,(question) => {
                             let stKeys = algebraKeys.slice((question-1)*5,question*5)
                             stKeys = stKeys.replace(/\s/g,'')
@@ -281,10 +278,7 @@ export const calculateObj = (academicYear,btsNo,grade) => {
                         })
                             
                         objResult.success = parseFloat((((objResult.success/questions.length)/2) * 100).toFixed(2))
-                        
-                        //console.log(objResult.studentId,objResult.name,objResult.surname)
-                        //console.log("variant= ",objVariant)
-                        //console.log('success= ', objResult.success)   
+                           
                     }
 
                     if (objResult.subject == 'geometry') {

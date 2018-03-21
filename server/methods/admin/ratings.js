@@ -11,11 +11,162 @@ Meteor.methods({
         })
     },
 
+    "deleteEvent": function(event_id) {
+        console.log(event_id)
+        assess = SchoolAssessments.findOne({_id:event_id})
+        schoolRating = SchoolPerformaRatings.findOne({schoolId:assess.schoolId,month:assess.month})
+        schoolAnnualRating = SchoolPerformaRatings.findOne({schoolId:assess.schoolId,month:'annual'})
+
+        if (assess.event == 'meeting') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.meeting--;
+        	schoolRating.meeting_points -= 9;
+        	schoolRating.total_points -= 9;
+
+        	schoolAnnualRating.meeting--;
+        	schoolAnnualRating.meeting_points -= 9;
+        	schoolAnnualRating.total_points -= 9;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'seminar') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.seminar--;
+        	schoolRating.seminar_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.meeting--;
+        	schoolAnnualRating.meeting_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'indoorEvent') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.indoorEvent--;
+        	schoolRating.indoorEvent_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.indoorEvent--;
+        	schoolAnnualRating.indoorEvent_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'ubt') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.ubt--;
+        	schoolRating.ubt_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.ubt--;
+        	schoolAnnualRating.ubt_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'pbl') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.pbl--;
+        	schoolRating.pbl_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.pbl--;
+        	schoolAnnualRating.pbl_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'olympiad') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.olympiad--;
+        	schoolRating.olympiad_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.olympiad--;
+        	schoolAnnualRating.olympiad_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'subject_week') {
+        	SchoolAssessments.remove(assess);
+        	schoolRating.subject_week--;
+        	schoolRating.subject_week_points -= 3;
+        	schoolRating.total_points -= 3;
+
+        	schoolAnnualRating.subject_week--;
+        	schoolAnnualRating.subject_week_points -= 3;
+        	schoolAnnualRating.total_points -= 3;
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'outdoor_event') {
+        	SchoolAssessments.remove(assess);
+        	
+        	if (assess.scope == 'city') {
+                schoolRating.outdoor_event--;
+                schoolRating.outdoor_event_points -= 9;
+                schoolRating.total_points -= 9
+
+                schoolAnnualRating.outdoor_event--;
+        		schoolAnnualRating.outdoor_event_points -= 9;
+        		schoolAnnualRating.total_points -= 9;
+            } 
+            else if (assess.scope == 'republic') {
+                schoolRating.outdoor_event--;
+                schoolRating.outdoor_event_points -= 18;
+                schoolRating.total_points -= 18;
+
+                schoolAnnualRating.outdoor_event--;
+        		schoolAnnualRating.outdoor_event_points -= 18;
+        		schoolAnnualRating.total_points -= 18;
+            }
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+        if (assess.event == 'admin_participate') {
+        	SchoolAssessments.remove(assess);
+        	
+        	if (assess.scope == 'vice-principal') {
+                schoolRating.admin_participate--;
+                schoolRating.admin_participate_points -= 0.5;
+                schoolRating.total_points -= 0.5;
+
+                schoolAnnualRating.admin_participate--;
+        		schoolAnnualRating.admin_participate_points -= 0.5;
+        		schoolAnnualRating.total_points -= 0.5;
+            } 
+            else if (assess.scope == 'principal') {
+                schoolRating.admin_participate--;
+                schoolRating.admin_participate_points -= 1;
+                schoolRating.total_points -= 1;
+
+                schoolAnnualRating.admin_participate--;
+        		schoolAnnualRating.admin_participate_points -= 1;
+        		schoolAnnualRating.total_points -= 1;
+            }
+
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:schoolRating.month},{$set:schoolRating});
+        	SchoolPerformaRatings.update({schoolId:schoolRating.schoolId,month:'annual'},{$set:schoolAnnualRating});
+        }
+    },
+
 	"calculateOlympiadRating": function(academicYear) {
         schools = Schools.find().fetch()
         _.each(schools,(school) => {
 
         	let grades = ['7','8','9','10','11']
+
+        	// average olympiad rating for all grades and all subjects
         	let olympiadGradeTotalRating = {
 		                    schoolId:school.schoolId,
 		                    academicYear:academicYear,
@@ -50,6 +201,7 @@ Meteor.methods({
         	_.each(grades, (grade) => {
 
 	        	var cTotal = 0;
+	        	// calculates average olympiad rating for each grade and all subjects
 	        	let olympiadTotalRating = {
 		                    schoolId:school.schoolId,
 		                    academicYear:academicYear,
@@ -85,6 +237,7 @@ Meteor.methods({
 	        	_.each(subjects,(subject) => {
 
 	        		var c = 0;
+	        		// average olympiad rating for each grade and each subject
 		            let olympiadRating = {
 		                    schoolId:school.schoolId,
 		                    academicYear:academicYear,
@@ -287,6 +440,7 @@ Meteor.methods({
 		            		OlympiadRatings.insert(olympiadGradeTotalRating)
 		            }
        		
+       		// calculates average olympiad rating for all grades but each subject
 		    calculateTotalGradeSubject(school.schoolId,academicYear)
 
         })

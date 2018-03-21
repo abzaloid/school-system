@@ -78,8 +78,12 @@ Template.kboStudentFinalResults.helpers({
 })
 
 Template.kboStudentFinalResults.events({
-    'change .subjectId'(event,template) {
-        template.subjectId.set(event.target.value)
+    'change #select'(event,template) {
+        template.subjectId.set(template.find('[name=subjectId]').value)
+        template.grade.set(template.find('[name=grade]').value)
+
+        let subjectId = FlowRouter.getParam('_id')
+        let grade = FlowRouter.getParam('_id')
     },
     'change .grade'(event,template) {
         template.grade.set(event.target.value)

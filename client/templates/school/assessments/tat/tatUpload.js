@@ -9,7 +9,7 @@ Template.tatUpload.onCreated(function() {
     template.tatNo = new ReactiveVar("1")
     template.subscribe("subjects")
     template.subscribe("teachers")
-    template.subscribe("tatKeys",academicYear.get(),template.tatNo.get())
+    template.subscribe("tatSchoolKeys",academicYear.get())
 })
 
 Template.tatUpload.helpers({
@@ -41,6 +41,8 @@ Template.tatUpload.events({
         template.tatNo.set(event.target.value)
     },
     "change #file"(event,template) {
+        let tatNo = Template.instance().tatNo.get()
+
         function handleFiles(files) {
             // Check for the various File API support.
             if (window.FileReader) {
@@ -79,7 +81,7 @@ Template.tatUpload.events({
                     isValid: true
                 }
 
-                let variant = TatAnswerKeys.findOne({variant: teacherObj.variant});
+                let variant = TatAnswerKeys.findOne({variant: teacherObj.variant, academicYear:academicYear.get(), tatNo:tatNo});
                 if (!variant) {
                     teacherObj.isValid = false
                     template.errors.set(true)

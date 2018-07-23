@@ -20,7 +20,7 @@ Template.tatRating.helpers({
 })
 
 Template.tatRating.events({
-    'change .subjectId'(event,template) {
+    'change #subjectId'(event,template) {
         template.subjectId.set(event.target.value)
     }
 })

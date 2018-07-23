@@ -56,6 +56,13 @@ Meteor.publish('tatKeys', function(academicYear,tatNo){
 	return this.ready()
 })
 
+Meteor.publish('tatSchoolKeys', function(academicYear){
+	if (this.userId) {
+		return TatAnswerKeys.find({academicYear:academicYear})	
+	} 
+	return this.ready()
+})
+
 Meteor.publish("tatKey",function (id) {
 	if (this.userId) {
 		return TatAnswerKeys.find({_id: id})

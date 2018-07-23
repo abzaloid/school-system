@@ -16,9 +16,6 @@ Template.teachersRating.onCreated(function() {
 })
 
 Template.teachersRating.helpers({
-    week() {
-        return 'all' != Template.instance().week.get()
-    },
     results() {
         let name_search = new RegExp(Template.instance().name_search.get(), 'i')
         let surname_search = new RegExp(Template.instance().surname_search.get(), 'i')

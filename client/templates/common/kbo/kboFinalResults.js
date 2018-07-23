@@ -14,6 +14,7 @@ Template.kboFinalResults.onCreated(function(){
 })
 Template.kboFinalResults.helpers({
     results() {
+        let grade = Template.instance().grade.get();
         let kbo1 = KboResults.find({kboNo:'1'}).fetch()
         let kbo2 = KboResults.find({kboNo:'2'}).fetch()
         let kbo3 = KboResults.find({kboNo:'3'}).fetch()
@@ -65,8 +66,22 @@ Template.kboFinalResults.helpers({
                 kbo2:0.4,
                 kbo3:0.45,
             }
-            resultObj.total = resultObj.kbo1 * kboWeights.kbo1 + resultObj.kbo2 * kboWeights.kbo2 + resultObj.kbo3 * kboWeights.kbo3
-            results.push(resultObj)
+            let kboWeights7 = {
+                kbo1:0.1,
+                kbo2:0.35,
+                kbo3:0.55,
+            }
+
+
+            if (grade == '7') {
+                resultObj.total = resultObj.kbo1 * kboWeights7.kbo1 + resultObj.kbo2 * kboWeights7.kbo2 + resultObj.kbo3 * kboWeights7.kbo3
+                resultObj.total = resultObj.total/2;
+                results.push(resultObj)
+            } else {
+                resultObj.total = resultObj.kbo1 * kboWeights.kbo1 + resultObj.kbo2 * kboWeights.kbo2 + resultObj.kbo3 * kboWeights.kbo3
+                resultObj.total = resultObj.total/2;
+                results.push(resultObj)
+            }
         })
 
         var s = Template.instance().state.get()

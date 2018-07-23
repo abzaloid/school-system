@@ -23,7 +23,7 @@ Template.tatResults.helpers({
 })
 
 Template.tatResults.events({
-    'change .subjectId'(event,template) {
+    'change #subjectId'(event,template) {
         template.subjectId.set(event.target.value)
     }
 })

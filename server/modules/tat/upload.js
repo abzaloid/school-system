@@ -30,7 +30,7 @@ export const upload = (academicYear,tatNo,schoolId,rows) => {
         teacherObj.position = teacher.position;
         teacherObj.subjectId = answerKey.subjectId;
         teacherObj.result = check(parseAnswerKey(answerKey.keys),teacherObj.answers)/2
-        teacherObj.percent = ((teacherObj.result/answerKey.amount)*100).toFixed(2)
+        teacherObj.percent = (teacherObj.result/parseAnswerKey(answerKey.keys).length*100).toFixed(2)
 
         let teacherResult = TatResults.find({
             academicYear: teacherObj.academicYear,

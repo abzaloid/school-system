@@ -1,6 +1,7 @@
 export const calculateRating = (academicYear,btsNo,schoolId) => {
     //calculated bts rating here
-    let grades = ["7","8","9","10"]
+    //let grades = ["7","8","9","10"]
+    let grades = ["8","9","10"]
     var counter = 0;
 
     let totalRating = {
@@ -28,30 +29,29 @@ export const calculateRating = (academicYear,btsNo,schoolId) => {
     }
 
     _.each(grades,(grade) => {
+        
         let gradeRating = calculateBtsRatingForGrade(academicYear,btsNo,schoolId,grade)
-
+        
         if (grade == gradeRating.grade && gradeRating.total > 0) {
             counter++;
         } 
-    
-        totalRating.algebra += (gradeRating.algebra || 0) 
-        totalRating.geometry += (gradeRating.geometry || 0) 
-        totalRating.computer += (gradeRating.computer || 0)  
-        totalRating.turkish += (gradeRating.turkish || 0)  
-        totalRating.world_history += (gradeRating.world_history || 0)  
-        totalRating.kazakh_history += (gradeRating.kazakh_history || 0)  
-        totalRating.geography += (gradeRating.geography || 0)  
-        totalRating.physics += (gradeRating.physics || 0) 
-        totalRating.chemistry += (gradeRating.chemistry || 0) 
-        totalRating.biology += (gradeRating.biology || 0) 
-        totalRating.english += (gradeRating.english || 0) 
-        totalRating.kazakh += (gradeRating.kazakh || 0) 
-        totalRating.kazakh_literature += (gradeRating.kazakh_literature || 0) 
-        totalRating.russian += (gradeRating.russian || 0) 
-        totalRating.total += (gradeRating.total || 0) 
+        
+            totalRating.algebra += (gradeRating.algebra || 0) 
+            totalRating.geometry += (gradeRating.geometry || 0) 
+            totalRating.computer += (gradeRating.computer || 0)  
+            totalRating.turkish += (gradeRating.turkish || 0)  
+            totalRating.world_history += (gradeRating.world_history || 0)  
+            totalRating.kazakh_history += (gradeRating.kazakh_history || 0)  
+            totalRating.geography += (gradeRating.geography || 0)  
+            totalRating.physics += (gradeRating.physics || 0) 
+            totalRating.chemistry += (gradeRating.chemistry || 0) 
+            totalRating.biology += (gradeRating.biology || 0) 
+            totalRating.english += (gradeRating.english || 0) 
+            totalRating.kazakh += (gradeRating.kazakh || 0) 
+            totalRating.kazakh_literature += (gradeRating.kazakh_literature || 0) 
+            totalRating.russian += (gradeRating.russian || 0) 
+            totalRating.total += (gradeRating.total || 0) 
     })
-
-    //console.log(counter)
     
     totalRating.algebra = totalRating.algebra / (counter || 1)
     totalRating.geometry = totalRating.geometry / (counter || 1) 
@@ -68,7 +68,6 @@ export const calculateRating = (academicYear,btsNo,schoolId) => {
     totalRating.kazakh_literature = totalRating.kazakh_literature / (counter || 1)
     totalRating.russian = totalRating.russian / (counter || 1)
     totalRating.total = totalRating.total / (counter || 1)
-    
 
     // insert total rating to db
     var sameSchoolRating = BtsRatings.findOne({
@@ -109,27 +108,6 @@ calculateBtsRatingForGrade = (academicYear,btsNo,schoolId,grade) => {
         russian: 0,
         total: 0
     }
-
-/*    let records = BtsResults.find({academicYear:academicYear,btsNo:btsNo,grade:grade,schoolId:schoolId}).fetch()
-
-    _.each(records,(record) => {
-        ratingObj.algebra += (record.algebra || 0) / records.length
-        ratingObj.geometry += (record.geometry || 0) / records.length
-        ratingObj.computer += (record.computer || 0) / records.length
-        ratingObj.turkish += (record.turkish || 0) / records.length
-        ratingObj.world_history += (record.world_history || 0) / records.length
-        ratingObj.kazakh_history += (record.kazakh_history || 0) / records.length
-        ratingObj.geography += (record.geography || 0) / records.length
-        ratingObj.physics += (record.physics || 0) / records.length
-        ratingObj.chemistry += (record.chemistry || 0) / records.length
-        ratingObj.biology += (record.biology || 0) / records.length
-        ratingObj.english += (record.english || 0) / records.length
-        ratingObj.kazakh += (record.kazakh || 0) / records.length
-        ratingObj.kazakh_literature += (record.kazakh_literature || 0) / records.length
-        ratingObj.russian += (record.russian || 0) / records.length
-        ratingObj.total += (record.total || 0) / records.length
-    })
-*/
 
     let records = BtsResults.find({academicYear:academicYear,btsNo:btsNo,grade:grade,schoolId:schoolId}).fetch()
 
@@ -203,5 +181,4 @@ calculateBtsRatingForGrade = (academicYear,btsNo,schoolId,grade) => {
     }
 
     return ratingObj
-
 }

@@ -77,12 +77,13 @@ export const upload = (academicYear,btsNo,day,schoolId,results) => {
                 studentRecord["russian"] = check(parseAnswerKey(answerKey.russian), studentObj.keys.slice(0,100));
                 studentRecord["turkish"] = check(parseAnswerKey(answerKey.turkish), studentObj.keys.slice(100,200));
 
-                if (studentRecord.elective1 == '02') studentRecord.physics = check(parseAnswerKey(answerKey.physics), studentObj.keys.slice(200,300));
-                if (studentRecord.elective1 == '03') studentRecord.chemistry = check(parseAnswerKey(answerKey.chemistry), studentObj.keys.slice(200,300));
-                if (studentRecord.elective1 == '04') studentRecord.biology = check(parseAnswerKey(answerKey.biology), studentObj.keys.slice(200,300));
-                if (studentRecord.elective2 == '06') studentRecord.geography = check(parseAnswerKey(answerKey.geography), studentObj.keys.slice(300,400));
-                if (studentRecord.elective2 == '07') studentRecord.world_history = check(parseAnswerKey(answerKey.world_history), studentObj.keys.slice(300,400))
-                if (studentRecord.elective2 == '08') studentRecord.computer = check(parseAnswerKey(answerKey.computer), studentObj.keys.slice(300,400))
+                if (studentRecord.elective1 == '02' && studentRecord.elective2 != '02') studentRecord.physics = check(parseAnswerKey(answerKey.physics), studentObj.keys.slice(200,300));
+                if (studentRecord.elective1 == '03' && studentRecord.elective2 != '03') studentRecord.chemistry = check(parseAnswerKey(answerKey.chemistry), studentObj.keys.slice(200,300));
+                if (studentRecord.elective1 == '04' && studentRecord.elective1 != '04') studentRecord.biology = check(parseAnswerKey(answerKey.biology), studentObj.keys.slice(200,300));
+                if (studentRecord.elective1 != '06' && studentRecord.elective2 == '06') studentRecord.geography = check(parseAnswerKey(answerKey.geography), studentObj.keys.slice(300,400));
+                if (studentRecord.elective1 != '07' && studentRecord.elective2 == '07') studentRecord.world_history = check(parseAnswerKey(answerKey.world_history), studentObj.keys.slice(300,400))
+                if (studentRecord.elective1 != '08' && studentRecord.elective2 == '08') studentRecord.computer = check(parseAnswerKey(answerKey.computer), studentObj.keys.slice(300,400))
+                else return;
 
                 studentRecord["day_2_total"] = studentRecord["russian"] + studentRecord["turkish"] + (studentRecord["physics"] || 0) + (studentRecord["chemistry"] || 0) + (studentRecord["biology"] || 0) + (studentRecord["geography"] || 0) + (studentRecord["world_history"] || 0) + (studentRecord["computer"] || 0);
                 studentRecord["total"] += studentRecord["day_2_total"];

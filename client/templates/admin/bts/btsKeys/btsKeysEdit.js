@@ -23,28 +23,25 @@ Template.btsKeysEdit.events({
     "click #save"(event,template) {
         event.preventDefault()
         let keys = BtsAnswerKeys.findOne({_id:FlowRouter.getParam("id")})
-        let answerKeys = {
-            
-        }
+        let answerKeys = {}
 
         if (keys.day=="2") {
-            answerKeys["algebra"] = template.find("[name=algebra]").value
-            answerKeys["geometry"] = template.find("[name=geometry]").value
-            answerKeys["computer"] = template.find("[name=computer]").value
-            answerKeys["turkish"] = template.find("[name=turkish]").value
-            answerKeys["world_history"] = template.find("[name=world_history]").value
-            answerKeys["kazakh_history"] = template.find("[name=kazakh_history]").value
-            answerKeys["geography"] = template.find("[name=geography]").value
-        } else {
-            answerKeys["physics"] = template.find("[name=physics]").value
-            answerKeys["chemistry"] = template.find("[name=chemistry]").value
-            answerKeys["biology"] = template.find("[name=biology]").value
-            answerKeys["english"] = template.find("[name=english]").value
-            answerKeys["kazakh_kaz"] = template.find("[name=kazakh_kaz]").value
-            answerKeys["kazakh_literature_kaz"] = template.find("[name=kazakh_literature_kaz]").value
-            answerKeys["kazakh_rus"] = template.find("[name=kazakh_rus]").value
-            answerKeys["kazakh_literature_rus"] = template.find("[name=kazakh_literature_rus]").value
-            answerKeys["russian"] = template.find("[name=russian]").value
+          answerKeys["russian"] = template.find("[name=russian]").value
+          answerKeys["turkish"] = template.find("[name=turkish]").value
+          answerKeys["physics"] = template.find("[name=physics]").value
+          answerKeys["chemistry"] = template.find("[name=chemistry]").value
+          answerKeys["biology"] = template.find("[name=biology]").value
+          answerKeys["computer"] = template.find("[name=computer]").value
+          answerKeys["world_history"] = template.find("[name=world_history]").value
+          answerKeys["geography"] = template.find("[name=geography]").value
+        }
+        else {
+          answerKeys["algebra"] = template.find("[name=algebra]").value;
+          answerKeys["geometry"] = template.find("[name=geometry]").value;
+          answerKeys["kazakh_kaz"] = template.find("[name=kazakh_kaz]").value;
+          answerKeys["kazakh_rus"] = template.find("[name=kazakh_rus]").value;
+          answerKeys["english"] = template.find("[name=english]").value;
+          answerKeys["kazakh_history"] = template.find("[name=kazakh_history]").value
         }
         Meteor.call("BtsAnswerKeys.Update", keys._id,answerKeys,function(err) {
             if (err) {

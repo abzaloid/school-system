@@ -45,4 +45,4 @@ Blaze.registerHelper("divide", function(value,number) {
     return value/number
 })
 
-academicYear = new ReactiveVar('2017-2018')
+academicYear = new ReactiveVar('2018-2019')

@@ -12,5 +12,8 @@
     "hoek": "^5.0.3",
     "meteor-node-stubs": "^0.2.11",
     "xlsx": "^0.11.18"
+  },
+  "devDependencies": {
+    "webpack-command": "^0.4.1"
   }
 }

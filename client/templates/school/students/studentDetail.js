@@ -35,6 +35,8 @@ Template.studentDetail.events({
         let division = template.find("[name=division]").value
         let olympiad = template.find("[name=olympiadSubject]").value
         let languageGroup = template.find("[name=languageGroup]").value
+        let elective1 = template.find("[name=elective1]").value
+        let elective2 = template.find("[name=elective2]").value
 
         if (name && surname && grade && division) {
             Meteor.call('Student.update',{
@@ -43,7 +45,9 @@ Template.studentDetail.events({
                 grade:grade,
                 division:division,
                 olympiad:olympiad,
-                languageGroup:languageGroup
+                languageGroup:languageGroup,
+                elective1:elective1,
+                elective2:elective2
             },student_id,function(err) {
                 if(err) {
                     alert(err.reason)

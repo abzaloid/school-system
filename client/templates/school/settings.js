@@ -39,5 +39,22 @@ Template.schoolSettings.events({
                 })
             }
         }
+    },
+    "click #downgrade"(event,template) {
+        event.preventDefault()
+        let pass = template.find("[name=confirm]").value
+        if (pass) {
+            if (confirm("Өзгеріс енгізілгеннен кейін қайта калпына келмейді!")) {
+                $('#downgrade').prop('disabled', true);
+                Meteor.call("Student.downgrade",function(err) {
+                    if (err) {
+                        alert(err.reason)
+                    } else {
+                        alert("Көшірудің артқа алынуы сәтті аяқталды!")
+                        $('#downgrade').prop('disabled', false);
+                    }
+                })
+            }
+        }
     }
 })

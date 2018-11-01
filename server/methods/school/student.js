@@ -77,6 +77,20 @@ Meteor.methods({
             throw new Meteor.Error('auth-error','School rights required.')
         }
     },
+    // added this
+    "Student.downgrade": function() {
+        if(Roles.userIsInRole(this.userId,'school')) {
+            let school = Schools.findOne({userId:this.userId})
+            Students.remove({grade:"7",schoolId:school.schoolId})
+            let students = Students.find({schoolId:school.schoolId}).fetch()
+            _.each(students,(student) => {
+                let grade = +student.grade-1+""
+                Students.update({_id:student._id},{$set:{grade:grade}})
+            })
+        } else {
+            throw new Meteor.Error('auth-error','School rights required.')
+        }
+    },
     "Student.addUser": function(student_id) {
         if(Roles.userIsInRole(this.userId,'school')) {
             let student = Students.findOne({_id:student_id})
@@ -85,19 +99,19 @@ Meteor.methods({
                 username: "student" + student.studentId,
                 password: "student" + student.studentId
             };
-            
+
             let userId = Accounts.createUser(newUserData);
             Roles.addUsersToRoles(userId,['student'])
             student.userId = userId;
             student.hasProfile = 'yes';
             Students.update({_id:student_id},{$set:student});
-    
+
             //console.log("student added:" + student.name + student.surname)
             }
     },
     "Student.addMultipleUsers": function() {
         if(Roles.userIsInRole(this.userId,'school')) {
-            
+
             let school = Schools.findOne({userId:this.userId})
 
             let students = Students.find({schoolId:school.schoolId}).fetch()
@@ -106,7 +120,7 @@ Meteor.methods({
                     username: "student" + student.studentId,
                     password: "student" + student.studentId
                 };
-                
+
                 let userId = Accounts.createUser(newUserData);
                 Roles.addUsersToRoles(userId,['student'])
                 student.userId = userId;
@@ -117,12 +131,12 @@ Meteor.methods({
     },
     "Student.deleteMultipleUsers": function() {
         if(Roles.userIsInRole(this.userId,'school')) {
-            
+
             let school = Schools.findOne({userId:this.userId})
 
             let students = Students.find({schoolId:school.schoolId}).fetch()
             _.each(students,(student) => {
-                
+
                 Meteor.users.remove(student.userId)
                 student.hasProfile = 'no';
                 Students.update({studentId:student.studentId},{$set:student});

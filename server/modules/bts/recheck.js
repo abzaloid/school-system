@@ -91,6 +91,13 @@ export const recheck = (academicYear,btsNo,variant,day) => {
               if (result.elective1 == '02') result.physics = check(parseAnswerKey(answerKey.physics), studentObj.keys.slice(200,300));
               if (result.elective1 == '03') result.chemistry = check(parseAnswerKey(answerKey.chemistry), studentObj.keys.slice(200,300));
               if (result.elective1 == '04') result.biology = check(parseAnswerKey(answerKey.biology), studentObj.keys.slice(200,300));
+              if (result.elective1 == '06') result.geography = check(parseAnswerKey(answerKey.geography), studentObj.keys.slice(200,300));
+              if (result.elective1 == '07') result.world_history = check(parseAnswerKey(answerKey.world_history), studentObj.keys.slice(200,300));
+              if (result.elective1 == '08') result.computer = check(parseAnswerKey(answerKey.computer), studentObj.keys.slice(200,300));
+
+              if (result.elective2 == '02') result.physics = check(parseAnswerKey(answerKey.physics), studentObj.keys.slice(300,400));
+              if (result.elective2 == '03') result.chemistry = check(parseAnswerKey(answerKey.chemistry), studentObj.keys.slice(300,400))
+              if (result.elective2 == '04') result.biology = check(parseAnswerKey(answerKey.biology), studentObj.keys.slice(300,400))
               if (result.elective2 == '06') result.geography = check(parseAnswerKey(answerKey.geography), studentObj.keys.slice(300,400));
               if (result.elective2 == '07') result.world_history = check(parseAnswerKey(answerKey.world_history), studentObj.keys.slice(300,400))
               if (result.elective2 == '08') result.computer = check(parseAnswerKey(answerKey.computer), studentObj.keys.slice(300,400))

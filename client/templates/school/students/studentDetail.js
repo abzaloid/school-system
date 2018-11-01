@@ -38,7 +38,11 @@ Template.studentDetail.events({
         let elective1 = template.find("[name=elective1]").value
         let elective2 = template.find("[name=elective2]").value
 
-        if (name && surname && grade && division) {
+        if (elective1 === elective2) {
+          alert("You cannot choose same subjects!")
+        }
+
+        if (name && surname && grade && division && (elective1 != elective2)) {
             Meteor.call('Student.update',{
                 name:name,
                 surname:surname,
@@ -52,6 +56,7 @@ Template.studentDetail.events({
                 if(err) {
                     alert(err.reason)
                 } else {
+                    alert("Сакталды!")
                     FlowRouter.redirect('/school/students')
                 }
             })

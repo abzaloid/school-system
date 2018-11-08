@@ -3,6 +3,12 @@ import { Meteor } from 'meteor/meteor'
 Meteor.publish('btsResults',function(academicYear,grade,btsNo) {
     if (this.userId) {
         let school = Schools.findOne({userId:this.userId})
+
+        if (academicYear == "2018-2019" && btsNo == "1") {
+            // Return correctly computed averages
+            return newRatings.find({academicYear:academicYear,grade:grade,btsNo:btsNo,schoolId:school.schoolId})
+        }
+
         let cursor = BtsResults.find({academicYear:academicYear,grade:grade,btsNo:btsNo,schoolId:school.schoolId})
         return cursor
     }

@@ -69,7 +69,7 @@ Meteor.publish('kboResults',function(academicYear,grade,subjectId,kboNo) {
         let school = Schools.findOne({userId:this.userId})
         let cursor = KboResults.find({academicYear:academicYear,grade:RegExp(grade),subjectId:RegExp(subjectId),kboNo:kboNo,schoolId:school.schoolId})
         return cursor
-    } 
+    }
     return this.ready()
 })
 
